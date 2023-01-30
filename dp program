@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int check(int sum,vector<int>v){
+   // cout<<" sum "<<sum<<endl;
+   if(sum==0){
+      return 1;
+   }
+   if(v.size()==0){
+      return 0;
+   }
+   if(sum<0){//for -ve num remove condition
+      return 0;
+   }
+   int end=v[v.size()-1];
+
+   v.pop_back();
+   int a;
+   if(end>=0)
+      a= check(sum-end,v);//count it
+   else
+      a= check(sum+end,v);//count it for -ve
+   int b= check(sum,v);//not count
+
+   return a+b;
+}
+
+int main(){
+   vector<int>v={10,12,46,91,62,45,78,3,4,66,2,20,33};
+
+   int cansum=4;
+
+   if(check(cansum,v)){
+      cout<<"true\n"; 
+   }
+   else{
+      cout<<" false \n";
+   }
+
+}
